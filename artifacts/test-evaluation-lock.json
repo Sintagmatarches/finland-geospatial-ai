@@ -1,0 +1,6 @@
+{
+  "split_version": "held-out-aoi/v1",
+  "checkpoint_sha256": "3fa7068bc893b9f1c42e00fabcf8ff685a04474381bb7cbfaf411a468fb0b983",
+  "test_metrics_sha256": "e49242e7fcb83bb0fd68c9ad51582d631ecf31d5774d0a95ad71da8374b757a8",
+  "evaluated_at": "2026-08-28T10:42:35.201914+00:00"
+}

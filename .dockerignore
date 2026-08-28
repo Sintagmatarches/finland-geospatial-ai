@@ -1,0 +1,8 @@
+.git
+.venv
+data
+mlruns
+artifacts/checkpoints
+reports
+tests
+__pycache__

@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+.mypy_cache/
+.ruff_cache/
+data/raw/
+data/processed/
+mlruns/
+artifacts/checkpoints/*.pt
+artifacts/model.pt
+*.egg-info/
+dist/
+build/
+.env

@@ -1,0 +1,21 @@
+experiment_id: E1
+question: Does adding NIR improve compact U-Net validation performance over RGB alone?
+dataset_manifest: artifacts/dataset-manifest-v1.json
+model: unet
+in_channels: 3
+band_indices: [0, 1, 2]
+num_classes: 6
+base_channels: 16
+loss: weighted_ce_dice
+optimizer: adamw
+learning_rate: 0.001
+weight_decay: 0.0001
+batch_size: 12
+epochs: 12
+patience: 4
+seed: 42
+device: auto
+num_workers: 0
+augmentation: dihedral
+mlflow_experiment: finland-geospatial-ai
+output: artifacts/checkpoints/unet-rgb-best.pt

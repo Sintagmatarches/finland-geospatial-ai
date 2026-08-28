@@ -1,0 +1,170 @@
+[
+  {
+    "experiment_id": "E0",
+    "question": "Do neural models outperform a training-majority sanity baseline?",
+    "model": "majority_class",
+    "majority_class": 0,
+    "bands": [],
+    "best_validation_miou": 0.06849399338188576,
+    "validation_metrics": {
+      "miou": 0.06849399338188576,
+      "macro_dice": 0.09708822522687843,
+      "pixel_accuracy": 0.41096396029131455,
+      "per_class_iou": [
+        0.41096396029131455,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "per_class_dice": [
+        0.5825293513612706,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "per_class_precision": [
+        0.41096396029131455,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "per_class_recall": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "support": [
+        447594,
+        14619,
+        15220,
+        236949,
+        8348,
+        366402
+      ],
+      "confusion_matrix": [
+        [
+          447594,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          14619,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          15220,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          236949,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          8348,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          366402,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    "checkpoint": null,
+    "device": "none"
+  },
+  {
+    "experiment_id": "E1",
+    "question": "Does adding NIR improve compact U-Net validation performance over RGB alone?",
+    "model": "unet",
+    "bands": [
+      "blue",
+      "green",
+      "red"
+    ],
+    "best_validation_miou": 0.4036857850184283,
+    "epochs_completed": 12,
+    "mlflow_run_id": "ac45369790c342509c1fc2958bbde586",
+    "checkpoint": "artifacts/checkpoints/unet-rgb-best.pt",
+    "device": "cpu"
+  },
+  {
+    "experiment_id": "E2",
+    "question": "Can a compact U-Net learn Finnish land cover from RGB+NIR beyond the majority baseline?",
+    "model": "unet",
+    "bands": [
+      "blue",
+      "green",
+      "red",
+      "nir"
+    ],
+    "best_validation_miou": 0.45121902533732294,
+    "epochs_completed": 12,
+    "mlflow_run_id": "c17934d4987f4000ac1800fef1c316b7",
+    "checkpoint": "artifacts/checkpoints/unet-best.pt",
+    "device": "cpu"
+  },
+  {
+    "experiment_id": "E3",
+    "question": "Does a lightweight DeepLabV3-style model improve spatial context over compact U-Net?",
+    "model": "tiny_deeplab",
+    "bands": [
+      "blue",
+      "green",
+      "red",
+      "nir"
+    ],
+    "best_validation_miou": 0.3867443717608148,
+    "epochs_completed": 12,
+    "mlflow_run_id": "ea73855bc68e4701a7d54cd160c9a5b4",
+    "checkpoint": "artifacts/checkpoints/deeplab-best.pt",
+    "device": "cpu"
+  },
+  {
+    "experiment_id": "E4",
+    "question": "Does the Dice component improve validation mIoU over weighted cross-entropy alone?",
+    "model": "unet",
+    "bands": [
+      "blue",
+      "green",
+      "red",
+      "nir"
+    ],
+    "best_validation_miou": 0.45736472667608913,
+    "epochs_completed": 12,
+    "mlflow_run_id": "0a92ae9d571448efbd1d84589a6d7727",
+    "checkpoint": "artifacts/checkpoints/unet-ce-best.pt",
+    "device": "cpu"
+  }
+]

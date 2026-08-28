@@ -1,0 +1,47 @@
+schema_version: finland-geoai-dataset/v1
+split_version: held-out-aoi/v1
+target_crs: EPSG:3067
+resolution_m: 10
+patch_size: 64
+stride: 64
+min_valid_fraction: 0.90
+bands: [blue, green, red, nir]
+stac:
+  endpoint: https://earth-search.aws.element84.com/v1
+  collection: sentinel-2-l2a
+  datetime: 2021-06-01T00:00:00Z/2021-09-15T23:59:59Z
+  max_cloud_cover: 10
+worldcover:
+  version: 2021-v200
+  base_url: https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map
+class_mapping:
+  version: finnish-six-class/v1
+  ignore_index: 255
+  classes:
+    0: {name: forest, source_codes: [10], color: [34, 139, 34]}
+    1: {name: shrub_grass, source_codes: [20, 30], color: [154, 205, 50]}
+    2: {name: cropland, source_codes: [40], color: [255, 215, 0]}
+    3: {name: built_up, source_codes: [50], color: [220, 20, 60]}
+    4: {name: other_natural, source_codes: [60, 70, 90, 95, 100], color: [210, 180, 140]}
+    5: {name: water, source_codes: [80], color: [30, 144, 255]}
+aois:
+  - id: helsinki
+    split: train
+    bbox_wgs84: [24.87, 60.17, 25.00, 60.26]
+    stac_item_id: S2A_35VLG_20210703_2_L2A
+    worldcover_tiles: [N60E024]
+  - id: lahti
+    split: train
+    bbox_wgs84: [25.55, 60.95, 25.72, 61.06]
+    stac_item_id: S2B_35VMH_20210618_1_L2A
+    worldcover_tiles: [N60E024]
+  - id: tampere
+    split: val
+    bbox_wgs84: [23.68, 61.43, 23.84, 61.54]
+    stac_item_id: S2A_35VLJ_20210716_1_L2A
+    worldcover_tiles: [N60E021]
+  - id: oulu
+    split: test
+    bbox_wgs84: [25.38, 64.98, 25.58, 65.10]
+    stac_item_id: S2A_35WMN_20210702_1_L2A
+    worldcover_tiles: [N63E024]
