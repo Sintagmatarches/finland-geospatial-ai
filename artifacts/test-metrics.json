@@ -374,5 +374,5 @@
     }
   ],
   "final_model": "artifacts/final-model.pt",
-  "final_model_sha256": "e418319864c2536385c1637c8ada4e43642867f18687e4d1058a5f46d561b31d"
+  "final_model_sha256": "4e103ad9683b5eb5e4831145101155e02c130826a00cf441cdbc900d19f495dc"
 }

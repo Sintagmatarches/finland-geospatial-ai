@@ -11,7 +11,7 @@ It is not intended for cadastral decisions, forestry inventory, environmental en
 - Input: 4-band blue/green/red/NIR GeoTIFF, band order fixed, 64×64 pixels, EPSG:3067, 10 m resolution.
 - Normalization: Sentinel reflectance / 10,000 and committed train-only channel statistics.
 - Output: forest, shrub/grass, cropland, built-up, other natural or water per valid pixel; no-data is 255.
-- Artifact: `artifacts/final-model.pt`, 1.9 MB, SHA-256 `e418319864c2536385c1637c8ada4e43642867f18687e4d1058a5f46d561b31d`.
+- Artifact: `artifacts/final-model.pt`, 1.9 MB, SHA-256 `4e103ad9683b5eb5e4831145101155e02c130826a00cf441cdbc900d19f495dc`.
 - Architecture: 488,230-parameter compact U-Net; four channels; GroupNorm; trained from scratch.
 
 ## Training procedure

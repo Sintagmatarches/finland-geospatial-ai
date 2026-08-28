@@ -2,7 +2,7 @@
   "schema_version": "finland-geoai-dataset/v1",
   "split_version": "held-out-aoi/v1",
   "generated_at": "2026-08-28T10:32:28.654677+00:00",
-  "code_commit": "uncommitted",
+  "code_commit": "bd83733d0c7cba5683a3f2d23f623917b4263a65",
   "config_sha256": "27ede16eb9d1cf8393072aad4ad2fc20159e06482bf9b588bcd7cb108963a681",
   "target_crs": "EPSG:3067",
   "resolution_m": 10,
