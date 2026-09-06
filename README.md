@@ -52,7 +52,7 @@ before non-overlapping 256 × 256 patches are sampled.
 | Validation | `L3243D` | 96 | 128 × 128 m |
 | Sealed test | `L3243F`, `L3243H` | 96 | 128 × 128 m |
 
-The test sheet is never used for model selection, early stopping, normalisation, or class balancing.
+The test sheets are never used for model selection, early stopping, normalisation, or class balancing.
 Every generated patch stores its CRS, affine transform, bounds, map sheet, acquisition year, class
 counts, and SHA-256 hashes in a strict versioned manifest.
 
@@ -162,5 +162,5 @@ differ. See the [scientific comparison](reports/v2/v1-v2-comparison.md).
 - Topographic polygons are cartographic objects, not human pixel annotations.
 - `other_land` is heterogeneous; it must not be reported as a forest class.
 - Labels and imagery are temporally close, not necessarily captured on the same date.
-- Evidence from four Turku-region sheets does not establish Finland-wide generalisation.
+- Evidence from five Turku-region sheets does not establish Finland-wide generalisation.
 - The API is intended for bounded batch inference, not unrestricted public uploads.

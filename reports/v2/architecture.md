@@ -38,7 +38,7 @@ content, and any cross-split patch intersection.
 
 Training uses deterministic seeds, paired spatial transforms, restrained RGB jitter, AdamW,
 mixed precision when CUDA is present, early stopping on validation mIoU, and `safetensors` weights.
-Only the validation sheet influences model selection. The test sheet is opened by the separate
+Only the validation sheet influences model selection. The test sheets are opened by the separate
 evaluation command. That command writes a lock containing the selected experiment, manifest,
 metadata, and evaluation hashes; the published output directory rejects a second test evaluation.
 
