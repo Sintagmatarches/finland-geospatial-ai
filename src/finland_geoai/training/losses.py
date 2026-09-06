@@ -23,6 +23,8 @@ def soft_dice_loss(logits: torch.Tensor, targets: torch.Tensor, ignore_index: in
 
 
 class WeightedCrossEntropyDice(nn.Module):
+    class_weights: torch.Tensor
+
     def __init__(self, class_weights: torch.Tensor, ignore_index: int = 255) -> None:
         super().__init__()
         self.register_buffer("class_weights", class_weights)
@@ -36,6 +38,8 @@ class WeightedCrossEntropyDice(nn.Module):
 
 
 class WeightedCrossEntropy(nn.Module):
+    class_weights: torch.Tensor
+
     def __init__(self, class_weights: torch.Tensor, ignore_index: int = 255) -> None:
         super().__init__()
         self.register_buffer("class_weights", class_weights)

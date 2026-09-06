@@ -1,0 +1,87 @@
+schema_version: finland-geospatial-ai-dataset-config/v2
+dataset_version: nls-l324-2025-v1
+split_version: l324-spatial-blocks-v1
+class_map_version: nls-broad-cover-v1
+seed: 3067
+
+source:
+  licensor: National Land Survey of Finland
+  licence: CC BY 4.0
+  crs: EPSG:3067
+  orthophoto:
+    product: NLS Orthophoto, digital colour
+    dataset_id: ortokuva
+    native_pixel_size_m: 0.5
+    bands: [red, green, blue]
+    acquisition_year: 2025
+    file_format: JPEG2000
+    process_id: ortoilmakuva_karttalehti
+  topographic_database:
+    product: NLS Topographic Database
+    snapshot_date: 2026-09-01
+    file_format: GPKG
+    process_id: maastotietokanta_bbox
+    bbox: [194000, 6744000, 212000, 6762000]
+    theme: maastotietokanta_kaikki
+
+patch:
+  size_px: 256
+  ground_size_m: 128.0
+  stride_px: 256
+  minimum_valid_fraction: 0.99
+  boundary_ignore_width_m: 1.5
+  ignore_index: 255
+  samples:
+    train: 384
+    val: 96
+    test: 96
+  rare_class_min_fraction: 0.005
+
+splits:
+  train:
+    map_sheets: [L3244C, L3244H]
+    edge_buffer_m: 512
+  val:
+    map_sheets: [L3243D]
+    edge_buffer_m: 512
+  test:
+    map_sheets: [L3243F, L3243H]
+    edge_buffer_m: 512
+
+classes:
+  - id: 0
+    name: other_land
+    color: [92, 102, 73]
+    source_layers: []
+    rule: residual valid terrestrial surface after mapped classes
+  - id: 1
+    name: water
+    color: [42, 123, 196]
+    source_layers: [meri, jarvi, virtavesialue, allas]
+    rule: union of authoritative hydrographic areas
+  - id: 2
+    name: cultivated_land
+    color: [225, 193, 72]
+    source_layers: [maatalousmaa]
+    rule: authoritative cultivated-land polygons
+  - id: 3
+    name: built_structures
+    color: [205, 72, 72]
+    source_layers:
+      [rakennus, autoliikennealue, satamaalue, varastoalue]
+    rule: precise visible built footprints; coarse urban-area polygons are excluded
+  - id: 4
+    name: open_natural
+    color: [112, 174, 93]
+    source_layers:
+      [niitty, suo, soistuma, kallioalue, kivikko, hietikko, matalikko,
+       maatuvavesialue, muuavoinalue]
+    rule: broad visible open-natural surfaces
+
+precedence: [other_land, open_natural, cultivated_land, water, built_structures]
+
+paths:
+  raw_dir: data/raw/nls-l324-2025-v1
+  processed_dir: data/processed/nls-l324-2025-v1
+  manifest: data/manifests/nls-l324-2025-v1.json
+  split_manifest: data/splits/l324-spatial-blocks-v1.geojson

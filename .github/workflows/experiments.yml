@@ -1,0 +1,62 @@
+name: Reproduce NLS experiments
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  train:
+    runs-on: self-hosted
+    timeout-minutes: 720
+    env:
+      NLS_API_KEY: ${{ secrets.NLS_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install -e '.[dev]'
+      - run: geoai-acquire --config configs/data/nls_l324.yaml --describe-only
+      - run: geoai-acquire --config configs/data/nls_l324.yaml
+      - run: geoai-data --config configs/data/nls_l324.yaml
+      - run: geoai-validate data/manifests/nls-l324-2025-v1.json
+      - run: geoai-dataset-report data/manifests/nls-l324-2025-v1.json
+      - run: geoai-evaluate --manifest data/manifests/nls-l324-2025-v1.json --majority-baseline --split val --output-dir artifacts/reproduction-evaluation
+      - run: geoai-train --config configs/models/unet.yaml --manifest data/manifests/nls-l324-2025-v1.json
+      - run: geoai-train --config configs/models/unet_no_boundary_ignore.yaml --manifest data/manifests/nls-l324-2025-v1.json
+      - run: geoai-train --config configs/models/segformer_b0.yaml --manifest data/manifests/nls-l324-2025-v1.json
+      - run: geoai-evaluate --metadata artifacts/models/E1-unet-rgb.json --manifest data/manifests/nls-l324-2025-v1.json --split val --output-dir artifacts/reproduction-evaluation
+      - run: geoai-evaluate --metadata artifacts/models/E2-unet-no-boundary-ignore.json --manifest data/manifests/nls-l324-2025-v1.json --split val --output-dir artifacts/reproduction-evaluation
+      - run: geoai-evaluate --metadata artifacts/models/E3-segformer-b0-rgb.json --manifest data/manifests/nls-l324-2025-v1.json --split val --output-dir artifacts/reproduction-evaluation
+      - run: geoai-select artifacts/models/E1-unet-rgb.json artifacts/models/E2-unet-no-boundary-ignore.json artifacts/models/E3-segformer-b0-rgb.json
+      - run: |
+          SELECTED=$(python -c "import json; print(json.load(open('artifacts/model-selection.json'))['packaged_metadata_path'])")
+          geoai-evaluate --metadata "$SELECTED" --manifest data/manifests/nls-l324-2025-v1.json --split test --device cpu --output-dir artifacts/reproduction-evaluation
+          EXPERIMENT=$(python -c "import json; print(json.load(open('$SELECTED'))['experiment_id'])")
+          geoai-report \
+            --metrics "artifacts/reproduction-evaluation/$EXPERIMENT-test-metrics.json" \
+            --patches "artifacts/reproduction-evaluation/$EXPERIMENT-test-patches.csv" \
+            --manifest data/manifests/nls-l324-2025-v1.json \
+            --metadata "$SELECTED"
+          geoai-summarize \
+            --selection artifacts/model-selection.json \
+            --test-metrics "artifacts/reproduction-evaluation/$EXPERIMENT-test-metrics.json" \
+            --baseline artifacts/reproduction-evaluation/B0-majority-class-val-metrics.json \
+            --manifest data/manifests/nls-l324-2025-v1.json \
+            --patch-metrics "artifacts/reproduction-evaluation/$EXPERIMENT-test-patches.csv"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: complete-nls-experiment-evidence
+          path: |
+            data/manifests/nls-l324-2025-v1.json
+            data/splits/l324-spatial-blocks-v1.geojson
+            artifacts/models
+            artifacts/evaluation
+            artifacts/reproduction-evaluation
+            artifacts/reports
+            artifacts/figures
+            artifacts/model-selection.json
+            mlflow.db

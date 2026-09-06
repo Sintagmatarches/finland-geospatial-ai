@@ -1,0 +1,23 @@
+experiment_id: E3-segformer-b0-rgb
+question: Does a pretrained modern architecture improve held-out geography over U-Net?
+model:
+  architecture: segformer_b0
+  backbone: nvidia/mit-b0
+  in_channels: 3
+  num_classes: 5
+  pretrained: true
+training:
+  epochs: 24
+  batch_size: 2
+  learning_rate: 0.00006
+  weight_decay: 0.01
+  patience: 6
+  num_workers: 2
+  seed: 3067
+  amp: true
+  loss: cross_entropy_dice
+  dice_weight: 0.5
+  augmentation:
+    dihedral: true
+    brightness: 0.08
+    contrast: 0.08

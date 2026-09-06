@@ -1,0 +1,12 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    environment:
+      GEOAI_MODEL_METADATA: /models/selected-model.json
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./artifacts/models:/models:ro
+    restart: unless-stopped

@@ -104,8 +104,8 @@ class SegmentationService:
             logits = self.model(tensor)[0]
             calibrated = torch.softmax(logits / self.temperature, dim=0)
             prediction = logits.argmax(dim=0).numpy().astype(np.uint8)
-            entropy = -(calibrated * calibrated.clamp_min(1e-8).log()).sum(dim=0)
-            entropy = entropy.numpy() / math.log(calibrated.shape[0])
+            entropy_tensor = -(calibrated * calibrated.clamp_min(1e-8).log()).sum(dim=0)
+            entropy = entropy_tensor.numpy() / math.log(calibrated.shape[0])
         prediction[~valid] = 255
         colors = np.asarray(
             [self.classes[str(index)]["color"] for index in range(6)], dtype=np.uint8

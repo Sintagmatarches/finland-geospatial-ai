@@ -4,22 +4,33 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "finland-geospatial-ai"
-version = "0.1.0"
-description = "Spatially honest land-cover semantic segmentation of Finnish Sentinel-2 imagery"
+version = "0.2.0"
+description = "High-resolution semantic segmentation of official NLS Finland orthophotos"
 requires-python = ">=3.11,<3.13"
 dependencies = [
   "fastapi==0.116.1",
+  "geopandas==1.1.1",
   "httpx==0.28.1",
+  "jsonschema==4.25.1",
   "matplotlib==3.10.5",
   "mlflow==3.3.2",
   "numpy==2.2.6",
+  "pandas==2.3.3",
   "pillow==11.3.0",
+  "pyogrio==0.11.1",
   "pydantic==2.11.7",
+  "pyproj==3.7.2",
   "python-multipart==0.0.20",
   "pyyaml==6.0.2",
   "rasterio==1.4.3",
+  "requests==2.34.2",
+  "safetensors==0.6.2",
   "scikit-learn==1.7.1",
+  "scipy==1.16.1",
+  "shapely==2.1.1",
   "torch==2.7.1",
+  "torchvision==0.22.1",
+  "transformers==4.55.2",
   "uvicorn==0.35.0",
 ]
 
@@ -29,19 +40,28 @@ dev = [
   "pytest==8.4.1",
   "pytest-cov==6.2.1",
   "ruff==0.12.10",
+  "types-PyYAML==6.0.12.20260815",
 ]
 
 [project.scripts]
-geoai-data = "finland_geoai.data.build:main"
-geoai-train = "finland_geoai.training.run:main"
-geoai-evaluate = "finland_geoai.evaluation.run:main"
+geoai-acquire = "finland_geospatial_ai.acquisition.cli:main"
+geoai-audit-topodb = "finland_geospatial_ai.acquisition.audit:main"
+geoai-data = "finland_geospatial_ai.datasets.build:main"
+geoai-validate = "finland_geospatial_ai.datasets.validate:main"
+geoai-dataset-report = "finland_geospatial_ai.datasets.report:main"
+geoai-train = "finland_geospatial_ai.training.engine:main"
+geoai-evaluate = "finland_geospatial_ai.evaluation.run:main"
+geoai-select = "finland_geospatial_ai.evaluation.selection:main"
+geoai-report = "finland_geospatial_ai.evaluation.report:main"
+geoai-summarize = "finland_geospatial_ai.evaluation.summarize:main"
+geoai-infer = "finland_geospatial_ai.inference.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
 
 [tool.ruff]
 line-length = 100
-target-version = "py311"
+target-version = "py312"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP"]
@@ -51,5 +71,5 @@ testpaths = ["tests"]
 addopts = "-q"
 
 [tool.mypy]
-python_version = "3.11"
+python_version = "3.12"
 ignore_missing_imports = true

@@ -1,0 +1,23 @@
+experiment_id: E1-unet-rgb
+question: How well does a conventional CNN segment native 0.5 m NLS RGB orthophotos?
+model:
+  architecture: unet
+  in_channels: 3
+  num_classes: 5
+  base_channels: 24
+  pretrained: false
+training:
+  epochs: 30
+  batch_size: 4
+  learning_rate: 0.0003
+  weight_decay: 0.0001
+  patience: 7
+  num_workers: 2
+  seed: 3067
+  amp: true
+  loss: cross_entropy_dice
+  dice_weight: 0.5
+  augmentation:
+    dihedral: true
+    brightness: 0.08
+    contrast: 0.08

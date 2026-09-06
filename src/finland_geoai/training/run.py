@@ -66,12 +66,12 @@ def _run_epoch(
     for images, masks, _metadata in loader:
         images = images.to(device)
         masks = masks.to(device)
-        if training:
+        if optimizer is not None:
             optimizer.zero_grad(set_to_none=True)
         with torch.set_grad_enabled(training):
             logits = model(images)
             loss = loss_function(logits, masks)
-            if training:
+            if optimizer is not None:
                 loss.backward()
                 optimizer.step()
         total_loss += float(loss.detach().cpu())
@@ -118,6 +118,7 @@ def train(config_path: Path) -> dict[str, Any]:
         int(config["base_channels"]),
     ).to(device)
     weights = _class_weights(manifest, int(config["num_classes"])).to(device)
+    loss_function: nn.Module
     if config["loss"] == "weighted_ce_dice":
         loss_function = WeightedCrossEntropyDice(weights, int(manifest["ignore_index"])).to(device)
     elif config["loss"] == "weighted_ce":

@@ -97,7 +97,7 @@ def build(config_path: Path, output_root: Path, manifest_path: Path) -> dict[str
         scl = read_aligned(scl_url, grid, Resampling.nearest).astype(np.uint8)
         valid = ~np.isin(scl, list(INVALID_SCL))
 
-        source_labels = np.zeros((grid.height, grid.width), dtype=np.uint8)
+        source_labels: np.ndarray = np.zeros((grid.height, grid.width), dtype=np.uint8)
         worldcover_urls = [_worldcover_url(config, tile) for tile in aoi["worldcover_tiles"]]
         for label_url in worldcover_urls:
             candidate = read_aligned(label_url, grid, Resampling.nearest).astype(np.uint8)

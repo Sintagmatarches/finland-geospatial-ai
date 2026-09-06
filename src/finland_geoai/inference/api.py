@@ -20,9 +20,8 @@ def create_app(model_path: Path | str | None = None) -> FastAPI:
         version="0.1.0",
         description="CPU semantic segmentation for validated 4-band EPSG:3067 GeoTIFF patches.",
     )
-    resolved_model_path = Path(
-        model_path or os.environ.get("MODEL_PATH", "artifacts/final-model.pt")
-    )
+    configured_model_path = model_path or os.environ.get("MODEL_PATH")
+    resolved_model_path = Path(configured_model_path or "artifacts/final-model.pt")
 
     @lru_cache(maxsize=1)
     def service() -> SegmentationService:
