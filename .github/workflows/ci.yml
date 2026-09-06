@@ -31,10 +31,22 @@ jobs:
             --volume "$PWD/artifacts/smoke:/models:ro" \
             finland-geospatial-ai:${{ github.sha }}
           trap 'docker rm --force geoai-smoke' EXIT
-          for attempt in $(seq 1 30); do
-            curl --fail --silent http://127.0.0.1:8000/health && break
+          ready=false
+          for attempt in $(seq 1 45); do
+            if curl --fail --silent http://127.0.0.1:8000/health; then
+              ready=true
+              break
+            fi
+            if ! docker inspect --format '{{.State.Running}}' geoai-smoke | grep --quiet true; then
+              break
+            fi
             sleep 2
           done
+          if [ "$ready" != true ]; then
+            docker logs geoai-smoke
+            docker inspect geoai-smoke --format '{{json .State}}'
+            exit 1
+          fi
           curl --fail --silent http://127.0.0.1:8000/model > artifacts/smoke/model-response.json
           curl --fail --silent --form file=@artifacts/smoke/input.tif \
             http://127.0.0.1:8000/predict --output artifacts/smoke/prediction-package.zip
