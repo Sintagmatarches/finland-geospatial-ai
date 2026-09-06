@@ -1,0 +1,145 @@
+{
+  "schema_version": "finland-geospatial-ai-dataset-validation/v1",
+  "dataset_version": "nls-l324-2025-v1",
+  "validation": {
+    "dataset_version": "nls-l324-2025-v1",
+    "patches": 576,
+    "splits": {
+      "train": 384,
+      "val": 96,
+      "test": 96
+    },
+    "crs": "EPSG:3067",
+    "pixel_size_m": 0.5,
+    "status": "valid"
+  },
+  "source_orthophotos": 5,
+  "orthophoto_years": [
+    2025
+  ],
+  "native_resolution_m": 0.5,
+  "crs": "EPSG:3067",
+  "source_vector_feature_counts": {
+    "allas": 260,
+    "autoliikennealue": 12,
+    "hietikko": 0,
+    "jarvi": 52,
+    "kallioalue": 6702,
+    "kivikko": 158,
+    "maatalousmaa": 1276,
+    "maatuvavesialue": 18,
+    "matalikko": 0,
+    "meri": 6,
+    "muuavoinalue": 127,
+    "niitty": 334,
+    "rakennus": 15298,
+    "satamaalue": 1,
+    "soistuma": 1151,
+    "suo": 1704,
+    "varastoalue": 19,
+    "virtavesialue": 24
+  },
+  "patch_counts": {
+    "train": 384,
+    "val": 96,
+    "test": 96
+  },
+  "patch_ground_size_m": 128.0,
+  "sampled_area_km2": 9.437184,
+  "class_distribution": {
+    "train": {
+      "other_land": {
+        "pixels": 12045367,
+        "fraction": 0.4786398808161418,
+        "area_m2": 3011341.75
+      },
+      "water": {
+        "pixels": 2125933,
+        "fraction": 0.08447698752085368,
+        "area_m2": 531483.25
+      },
+      "cultivated_land": {
+        "pixels": 6885898,
+        "fraction": 0.2736210028330485,
+        "area_m2": 1721474.5
+      },
+      "built_structures": {
+        "pixels": 1354527,
+        "fraction": 0.05382406711578369,
+        "area_m2": 338631.75
+      },
+      "open_natural": {
+        "pixels": 2754099,
+        "fraction": 0.10943806171417236,
+        "area_m2": 688524.75
+      }
+    },
+    "val": {
+      "other_land": {
+        "pixels": 2479274,
+        "fraction": 0.39406998952229816,
+        "area_m2": 619818.5
+      },
+      "water": {
+        "pixels": 1976459,
+        "fraction": 0.3141496976216634,
+        "area_m2": 494114.75
+      },
+      "cultivated_land": {
+        "pixels": 945834,
+        "fraction": 0.15033626556396484,
+        "area_m2": 236458.5
+      },
+      "built_structures": {
+        "pixels": 29075,
+        "fraction": 0.004621346791585286,
+        "area_m2": 7268.75
+      },
+      "open_natural": {
+        "pixels": 860814,
+        "fraction": 0.13682270050048828,
+        "area_m2": 215203.5
+      }
+    },
+    "test": {
+      "other_land": {
+        "pixels": 3428062,
+        "fraction": 0.5448757807413737,
+        "area_m2": 857015.5
+      },
+      "water": {
+        "pixels": 313594,
+        "fraction": 0.04984442392985026,
+        "area_m2": 78398.5
+      },
+      "cultivated_land": {
+        "pixels": 1214142,
+        "fraction": 0.19298267364501953,
+        "area_m2": 303535.5
+      },
+      "built_structures": {
+        "pixels": 75720,
+        "fraction": 0.012035369873046875,
+        "area_m2": 18930.0
+      },
+      "open_natural": {
+        "pixels": 1259938,
+        "fraction": 0.20026175181070963,
+        "area_m2": 314984.5
+      }
+    }
+  },
+  "ignored_pixel_fraction_by_split": {
+    "train": 0.049834489822387695,
+    "val": 0.031192779541015625,
+    "test": 0.058653831481933594
+  },
+  "minimum_split_distances": {
+    "train_to_val_m": 1136.0,
+    "train_to_test_m": 2788.318489699482,
+    "val_to_test_m": 1264.0
+  },
+  "duplicate_check": "passed",
+  "alignment_check": "passed",
+  "hash_check": "passed"
+}

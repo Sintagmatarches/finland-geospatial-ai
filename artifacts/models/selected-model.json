@@ -1,0 +1,215 @@
+{
+  "schema_version": "finland-geospatial-ai-model/v2",
+  "experiment_id": "E3-segformer-b0-rgb",
+  "question": "Does a pretrained modern architecture improve held-out geography over U-Net?",
+  "model": {
+    "architecture": "segformer_b0",
+    "backbone": "nvidia/mit-b0",
+    "in_channels": 3,
+    "num_classes": 5,
+    "pretrained": true
+  },
+  "experiment_config_sha256": "19e43162393af47bd17846d0997ce059c6e8a6a25a82a4216b87a15b14fc5039",
+  "dataset_manifest": "data\\manifests\\nls-l324-2025-v1.json",
+  "dataset_manifest_sha256": "74075106f9d0101626287275e9422c7e9d5d88f62849c9b3d9d5162c1dce8576",
+  "dataset_version": "nls-l324-2025-v1",
+  "split_version": "l324-spatial-blocks-v1",
+  "class_map_version": "nls-broad-cover-v1",
+  "normalization": {
+    "scale": 255.0,
+    "mean": [
+      0.43319678961063085,
+      0.48720655612695674,
+      0.45252731267144003
+    ],
+    "std": [
+      0.21883351372242416,
+      0.20391465830129404,
+      0.18162299404809157
+    ]
+  },
+  "classes": [
+    {
+      "id": 0,
+      "name": "other_land",
+      "color": [
+        92,
+        102,
+        73
+      ],
+      "source_layers": [],
+      "rule": "residual valid terrestrial surface after mapped classes"
+    },
+    {
+      "id": 1,
+      "name": "water",
+      "color": [
+        42,
+        123,
+        196
+      ],
+      "source_layers": [
+        "meri",
+        "jarvi",
+        "virtavesialue",
+        "allas"
+      ],
+      "rule": "union of authoritative hydrographic areas"
+    },
+    {
+      "id": 2,
+      "name": "cultivated_land",
+      "color": [
+        225,
+        193,
+        72
+      ],
+      "source_layers": [
+        "maatalousmaa"
+      ],
+      "rule": "authoritative cultivated-land polygons"
+    },
+    {
+      "id": 3,
+      "name": "built_structures",
+      "color": [
+        205,
+        72,
+        72
+      ],
+      "source_layers": [
+        "rakennus",
+        "autoliikennealue",
+        "satamaalue",
+        "varastoalue"
+      ],
+      "rule": "precise visible built footprints; coarse urban-area polygons are excluded"
+    },
+    {
+      "id": 4,
+      "name": "open_natural",
+      "color": [
+        112,
+        174,
+        93
+      ],
+      "source_layers": [
+        "niitty",
+        "suo",
+        "soistuma",
+        "kallioalue",
+        "kivikko",
+        "hietikko",
+        "matalikko",
+        "maatuvavesialue",
+        "muuavoinalue"
+      ],
+      "rule": "broad visible open-natural surfaces"
+    }
+  ],
+  "ignore_index": 255,
+  "native_pixel_size_m": 0.5,
+  "training_boundary_ignore": true,
+  "validation_boundary_ignore": true,
+  "crs": "EPSG:3067",
+  "bands": [
+    "red",
+    "green",
+    "blue"
+  ],
+  "patch_size_px": 256,
+  "best_validation_mean_iou": 0.7343602223164037,
+  "best_validation_metrics": {
+    "pixel_accuracy": 0.9086405254750946,
+    "mean_iou": 0.7343602223164037,
+    "macro_dice": 0.8304798789571622,
+    "mean_class_recall": 0.8031609434134394,
+    "per_class_iou": [
+      0.809944402706949,
+      0.9700072633186511,
+      0.8919247484395826,
+      0.44556831818961085,
+      0.5543563789272248
+    ],
+    "per_class_dice": [
+      0.8949936821215037,
+      0.9847753167006991,
+      0.9428755019724989,
+      0.61646110056926,
+      0.7132937934218493
+    ],
+    "per_class_precision": [
+      0.8693116895037872,
+      0.9749370342481759,
+      0.9549718279883055,
+      0.7506498507750072,
+      0.7982267569653947
+    ],
+    "per_class_recall": [
+      0.9222393104131443,
+      0.994814183396929,
+      0.9310817835908592,
+      0.5229727010530552,
+      0.6446967386132091
+    ],
+    "confusion_matrix": [
+      [
+        2197154,
+        23701,
+        26289,
+        2090,
+        133178
+      ],
+      [
+        3085,
+        1952483,
+        6451,
+        260,
+        382
+      ],
+      [
+        62473,
+        387,
+        852532,
+        240,
+        4
+      ],
+      [
+        7101,
+        11,
+        0,
+        7797,
+        0
+      ],
+      [
+        257651,
+        26094,
+        7458,
+        0,
+        528387
+      ]
+    ]
+  },
+  "training_seconds": 414.3516057000088,
+  "mlflow_run_id": "1da67b56fa65438ca5020b17be02f78b",
+  "weights": "E3-segformer-b0-rgb.safetensors",
+  "weights_sha256": "06a4c34133e5c44ebdd68695f56b5cdaeacc77721b873b39b6e079a8464eaf50",
+  "training_commit": "396cae11ed19879f078006dd988ffcabf5da71c7",
+  "runtime": {
+    "python": "3.12.0",
+    "pytorch": "2.7.1+cu118",
+    "cuda": "11.8",
+    "cudnn": 90100,
+    "libraries": {
+      "torchvision": "0.22.1+cu118",
+      "transformers": "4.55.2",
+      "rasterio": "1.4.3",
+      "geopandas": "1.1.1",
+      "shapely": "2.1.1",
+      "pyproj": "3.7.2",
+      "mlflow": "3.3.2",
+      "numpy": "2.2.6"
+    }
+  },
+  "selection_artifact": "artifacts/model-selection.json"
+}

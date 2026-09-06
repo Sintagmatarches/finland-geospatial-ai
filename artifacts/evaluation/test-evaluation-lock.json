@@ -1,0 +1,12 @@
+{
+  "schema_version": "finland-geospatial-ai-test-lock/v2",
+  "created_at": "2026-09-06T06:26:13.148942+00:00",
+  "experiment_id": "E3-segformer-b0-rgb",
+  "dataset_version": "nls-l324-2025-v1",
+  "split_version": "l324-spatial-blocks-v1",
+  "metadata_sha256": "0d339f51452b0d3ceccca594ac64e6e3c2cad917b986f825c1da37a9e0b7ef9b",
+  "manifest_sha256": "74075106f9d0101626287275e9422c7e9d5d88f62849c9b3d9d5162c1dce8576",
+  "evaluation_artifact": "artifacts/evaluation/E3-segformer-b0-rgb-test-metrics.json",
+  "evaluation_sha256": "00944fdbaee37d6b066c5a2999e9ec7819620c6751a65083b8d0fc23fdb5bf71",
+  "sealed_test_evaluations": 1
+}

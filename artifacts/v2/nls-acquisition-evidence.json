@@ -1,0 +1,40 @@
+{
+  "schema_version": "finland-geospatial-ai-nls-acquisition/v2",
+  "delivered_at": "2026-09-01T17:15:39.991621+00:00",
+  "official_service": "https://avoin-paikkatieto.maanmittauslaitos.fi/tiedostopalvelu/ogcproc/v1",
+  "authentication": "NLS_API_KEY supplied as an environment-only HTTP Basic username; value excluded",
+  "route_verification": {
+    "verified_at": "2026-09-06T06:32:34.9389060Z",
+    "coverage_found": ["L3243D", "L3243F", "L3243H", "L3244C", "L3244H"],
+    "orthophoto_input_ids": ["mapSheetInput", "dataSetInput", "yearInput", "fileFormatInput"],
+    "topographic_input_ids": ["boundingBoxInput", "themeInput", "fileFormatInput"]
+  },
+  "orthophoto": {
+    "process": "ortoilmakuva_karttalehti",
+    "product": "ortokuva",
+    "year": 2025,
+    "format": "JPEG2000",
+    "crs": "EPSG:3067",
+    "pixel_size_m": 0.5,
+    "bands": ["red", "green", "blue"],
+    "dimensions_px": [12000, 12000],
+    "map_sheets": ["L3243D", "L3243F", "L3243H", "L3244C", "L3244H"],
+    "files": [
+      {"name": "L3243D.jp2", "bytes": 107982579, "sha256": "107448102bf15025c60c1f92b6d0ad8fe61f252a81bd7ee860a90f2e9b9fd3ac"},
+      {"name": "L3243F.jp2", "bytes": 107980117, "sha256": "3b1b4daa2f064047e8a0947f8394624f1ef0d5ece3588ed41380e01b2002f016"},
+      {"name": "L3243H.jp2", "bytes": 107981127, "sha256": "25d0158571459e2157ad6132ed22ac059d51e03bf28f510b912b6fe012f3ab2c"},
+      {"name": "L3244C.jp2", "bytes": 107982359, "sha256": "9d141cd654782b5f41c3371de3581d351689f67ad6964a7df5de1052000f73c5"},
+      {"name": "L3244H.jp2", "bytes": 107982144, "sha256": "003422353280120299db65e427caa4ba6d3c7fcb819ff1b4b99a1e198783e9cc"}
+    ]
+  },
+  "topographic_database": {
+    "process": "maastotietokanta_bbox",
+    "theme": "maastotietokanta_kaikki",
+    "format": "GeoPackage",
+    "bbox_epsg_3067": [194000, 6744000, 212000, 6762000],
+    "layers": 128,
+    "file": {"name": "maastotietokanta_kaikki.gpkg", "bytes": 154288128, "sha256": "df40921fd7024af1e126b49adfe70430650cf90a6693c36221e3d864a6d54c39"}
+  },
+  "licensor": "National Land Survey of Finland",
+  "licence": "CC BY 4.0"
+}

@@ -1,0 +1,214 @@
+{
+  "schema_version": "finland-geospatial-ai-model/v2",
+  "experiment_id": "E1-unet-rgb",
+  "question": "How well does a conventional CNN segment native 0.5 m NLS RGB orthophotos?",
+  "model": {
+    "architecture": "unet",
+    "in_channels": 3,
+    "num_classes": 5,
+    "base_channels": 24,
+    "pretrained": false
+  },
+  "experiment_config_sha256": "447ca530f30004a9ab9e53e10eaafc628b5d6307c054612f7fb546dc46cfc180",
+  "dataset_manifest": "data\\manifests\\nls-l324-2025-v1.json",
+  "dataset_manifest_sha256": "74075106f9d0101626287275e9422c7e9d5d88f62849c9b3d9d5162c1dce8576",
+  "dataset_version": "nls-l324-2025-v1",
+  "split_version": "l324-spatial-blocks-v1",
+  "class_map_version": "nls-broad-cover-v1",
+  "normalization": {
+    "scale": 255.0,
+    "mean": [
+      0.43319678961063085,
+      0.48720655612695674,
+      0.45252731267144003
+    ],
+    "std": [
+      0.21883351372242416,
+      0.20391465830129404,
+      0.18162299404809157
+    ]
+  },
+  "classes": [
+    {
+      "id": 0,
+      "name": "other_land",
+      "color": [
+        92,
+        102,
+        73
+      ],
+      "source_layers": [],
+      "rule": "residual valid terrestrial surface after mapped classes"
+    },
+    {
+      "id": 1,
+      "name": "water",
+      "color": [
+        42,
+        123,
+        196
+      ],
+      "source_layers": [
+        "meri",
+        "jarvi",
+        "virtavesialue",
+        "allas"
+      ],
+      "rule": "union of authoritative hydrographic areas"
+    },
+    {
+      "id": 2,
+      "name": "cultivated_land",
+      "color": [
+        225,
+        193,
+        72
+      ],
+      "source_layers": [
+        "maatalousmaa"
+      ],
+      "rule": "authoritative cultivated-land polygons"
+    },
+    {
+      "id": 3,
+      "name": "built_structures",
+      "color": [
+        205,
+        72,
+        72
+      ],
+      "source_layers": [
+        "rakennus",
+        "autoliikennealue",
+        "satamaalue",
+        "varastoalue"
+      ],
+      "rule": "precise visible built footprints; coarse urban-area polygons are excluded"
+    },
+    {
+      "id": 4,
+      "name": "open_natural",
+      "color": [
+        112,
+        174,
+        93
+      ],
+      "source_layers": [
+        "niitty",
+        "suo",
+        "soistuma",
+        "kallioalue",
+        "kivikko",
+        "hietikko",
+        "matalikko",
+        "maatuvavesialue",
+        "muuavoinalue"
+      ],
+      "rule": "broad visible open-natural surfaces"
+    }
+  ],
+  "ignore_index": 255,
+  "native_pixel_size_m": 0.5,
+  "training_boundary_ignore": true,
+  "validation_boundary_ignore": true,
+  "crs": "EPSG:3067",
+  "bands": [
+    "red",
+    "green",
+    "blue"
+  ],
+  "patch_size_px": 256,
+  "best_validation_mean_iou": 0.5670716887138365,
+  "best_validation_metrics": {
+    "pixel_accuracy": 0.8212208672780322,
+    "mean_iou": 0.5670716887138365,
+    "macro_dice": 0.6521389567546112,
+    "mean_class_recall": 0.681890178084144,
+    "per_class_iou": [
+      0.7025591861766481,
+      0.9526942256002421,
+      0.7470709821323014,
+      0.4329986705175813,
+      3.537914240958799e-05
+    ],
+    "per_class_dice": [
+      0.8252978127055308,
+      0.9757741003278604,
+      0.855226822233062,
+      0.6043252927250624,
+      7.075578154030457e-05
+    ],
+    "per_class_precision": [
+      0.7082850930873857,
+      0.9930104568840142,
+      0.8841277928897978,
+      0.5777111749954126,
+      0.22137404580152673
+    ],
+    "per_class_recall": [
+      0.9886241338609779,
+      0.9591259010088854,
+      0.828155511578837,
+      0.6335099604265879,
+      3.538354543125221e-05
+    ],
+    "confusion_matrix": [
+      [
+        2355310,
+        1618,
+        20343,
+        5098,
+        43
+      ],
+      [
+        22633,
+        1882439,
+        57326,
+        206,
+        57
+      ],
+      [
+        156144,
+        981,
+        758289,
+        221,
+        1
+      ],
+      [
+        5463,
+        0,
+        0,
+        9445,
+        1
+      ],
+      [
+        785820,
+        10651,
+        21711,
+        1379,
+        29
+      ]
+    ]
+  },
+  "training_seconds": 409.872984200003,
+  "mlflow_run_id": "9031810c9f4b458a93671bfc97172255",
+  "weights": "E1-unet-rgb.safetensors",
+  "weights_sha256": "1d05e7a5b8f6eb43cd07f682a72611d925f3fafcc984c6ad9a6f0db5b7458f85",
+  "training_commit": "396cae11ed19879f078006dd988ffcabf5da71c7",
+  "runtime": {
+    "python": "3.12.0",
+    "pytorch": "2.7.1+cu118",
+    "cuda": "11.8",
+    "cudnn": 90100,
+    "libraries": {
+      "torchvision": "0.22.1+cu118",
+      "transformers": "4.55.2",
+      "rasterio": "1.4.3",
+      "geopandas": "1.1.1",
+      "shapely": "2.1.1",
+      "pyproj": "3.7.2",
+      "mlflow": "3.3.2",
+      "numpy": "2.2.6"
+    }
+  }
+}

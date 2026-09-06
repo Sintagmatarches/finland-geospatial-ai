@@ -1,0 +1,52 @@
+{
+  "metrics": "artifacts/evaluation/E3-segformer-b0-rgb-test-metrics.json",
+  "examples": {
+    "worst": {
+      "patch_id": "test-L3243F-01024-08960",
+      "map_sheet": "L3243F",
+      "mean_iou": "0.0",
+      "pixel_accuracy": "0.0",
+      "boundary_f1": "0.0",
+      "mean_entropy": "0.17707481980323792",
+      "mean_confidence": "0.9635732769966125"
+    },
+    "median": {
+      "patch_id": "test-L3243F-05632-06144",
+      "map_sheet": "L3243F",
+      "mean_iou": "0.2",
+      "pixel_accuracy": "1.0",
+      "boundary_f1": "1.0",
+      "mean_entropy": "0.41700106859207153",
+      "mean_confidence": "0.8979663252830505"
+    },
+    "best": {
+      "patch_id": "test-L3243F-03840-02048",
+      "map_sheet": "L3243F",
+      "mean_iou": "0.5031252798953172",
+      "pixel_accuracy": "0.9841768618506054",
+      "boundary_f1": "0.28593717598032925",
+      "mean_entropy": "0.2368028461933136",
+      "mean_confidence": "0.9328290224075317"
+    },
+    "highest-entropy": {
+      "patch_id": "test-L3243F-05376-07424",
+      "map_sheet": "L3243F",
+      "mean_iou": "0.13270128921283414",
+      "pixel_accuracy": "0.2885790647396286",
+      "boundary_f1": "0.0825619554147335",
+      "mean_entropy": "0.8414785861968994",
+      "mean_confidence": "0.6566546559333801"
+    }
+  },
+  "generated_files": [
+    "confusion-matrix.png",
+    "error-case-best.png",
+    "error-case-highest-entropy.png",
+    "error-case-median.png",
+    "error-case-worst.png",
+    "geographic-generalization.png",
+    "per-class-iou.png",
+    "reliability.png",
+    "risk-coverage.png"
+  ]
+}

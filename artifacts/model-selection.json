@@ -1,0 +1,38 @@
+{
+  "schema_version": "finland-geospatial-ai-model-selection/v1",
+  "generated_at": "2026-09-06T06:25:40.888202+00:00",
+  "dataset_version": "nls-l324-2025-v1",
+  "split_version": "l324-spatial-blocks-v1",
+  "dataset_manifest_sha256": "74075106f9d0101626287275e9422c7e9d5d88f62849c9b3d9d5162c1dce8576",
+  "class_map_version": "nls-broad-cover-v1",
+  "primary_metric": "validation_mean_iou",
+  "tie_breaker": "validation_macro_dice",
+  "test_metrics_consulted": false,
+  "candidates": [
+    {
+      "experiment_id": "E1-unet-rgb",
+      "mlflow_run_id": "9031810c9f4b458a93671bfc97172255",
+      "metadata_path": "artifacts/models/E1-unet-rgb.json",
+      "validation_mean_iou": 0.5670716887138365,
+      "validation_macro_dice": 0.6521389567546112
+    },
+    {
+      "experiment_id": "E2-unet-no-boundary-ignore",
+      "mlflow_run_id": "431b47f55c5e482687361e3a6c43e204",
+      "metadata_path": "artifacts/models/E2-unet-no-boundary-ignore.json",
+      "validation_mean_iou": 0.6678362598463068,
+      "validation_macro_dice": 0.7749647164182955
+    },
+    {
+      "experiment_id": "E3-segformer-b0-rgb",
+      "mlflow_run_id": "1da67b56fa65438ca5020b17be02f78b",
+      "metadata_path": "artifacts/models/E3-segformer-b0-rgb.json",
+      "validation_mean_iou": 0.7343602223164037,
+      "validation_macro_dice": 0.8304798789571622
+    }
+  ],
+  "selected_experiment_id": "E3-segformer-b0-rgb",
+  "selected_metadata_path": "artifacts/models/E3-segformer-b0-rgb.json",
+  "packaged_metadata_path": "artifacts/models/selected-model.json",
+  "reason": "Highest validation mean IoU; macro Dice is the declared tie-breaker."
+}

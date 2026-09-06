@@ -1,0 +1,286 @@
+{
+  "schema_version": "finland-geospatial-ai-source-audit/v1",
+  "generated_at": "2026-09-01T17:18:42.367823+00:00",
+  "source_url": "https://avoin-paikkatieto.maanmittauslaitos.fi/tiedostopalvelu/ogcproc/v1",
+  "source_file": "maastotietokanta_kaikki.gpkg",
+  "source_sha256": "df40921fd7024af1e126b49adfe70430650cf90a6693c36221e3d864a6d54c39",
+  "source_crs": "EPSG:3067",
+  "orthophoto_coverage_year": 2025,
+  "available_layers": [
+    "aallonmurtaja",
+    "aidansymboli",
+    "aita",
+    "allas",
+    "aluemerenulkoraja",
+    "ampumaalue",
+    "ankkuripaikka",
+    "autoliikennealue",
+    "harvalouhikko",
+    "hautausmaa",
+    "hietikko",
+    "hylky",
+    "hylynsyvyys",
+    "ilmaradankannatinpylvas",
+    "ilmarata",
+    "jarvi",
+    "jyrkanne",
+    "kaatopaikka",
+    "kaislikko",
+    "kallioalue",
+    "kalliohalkeama",
+    "kalliosymboli",
+    "kansallispuisto",
+    "karttasymboli",
+    "kellotapuli",
+    "kivi",
+    "kivikko",
+    "korkeuskayra",
+    "korkeuskayrankorkeusarvo",
+    "koski",
+    "kunnanhallintokeskus",
+    "kunta",
+    "lahde",
+    "lahestymisvalo",
+    "layer_styles",
+    "lentokenttaalue",
+    "louhos",
+    "luiska",
+    "luonnonpuisto",
+    "luonnonsuojelualue",
+    "maaaineksenottoalue",
+    "maasto2kuvionreuna",
+    "maastokuvionreuna",
+    "maatalousmaa",
+    "maatuvavesialue",
+    "masto",
+    "mastonkorkeus",
+    "matalikko",
+    "meri",
+    "merkittavaluontokohde",
+    "metsamaankasvillisuus",
+    "metsamaanmuokkaus",
+    "metsanraja",
+    "muistomerkki",
+    "muuavoinalue",
+    "muuntaja",
+    "muuntoasema",
+    "nakotorni",
+    "niitty",
+    "osoitepiste",
+    "paikannimi",
+    "pato",
+    "pelastuskoodipiste",
+    "pistolaituriviiva",
+    "portti",
+    "puisto",
+    "puu",
+    "puurivi",
+    "rajavyohykkeentakaraja",
+    "rakennelma",
+    "rakennus",
+    "rakennusreunaviiva",
+    "rauhoitettukohde",
+    "rautatie",
+    "rautatieliikennepaikka",
+    "rautatiensymboli",
+    "retkeilyalue",
+    "sahkolinja",
+    "sahkolinjansymboli",
+    "satamaalue",
+    "savupiippu",
+    "savupiipunkorkeus",
+    "selite",
+    "sisaistenaluevesienulkoraja",
+    "soistuma",
+    "sulkuportti",
+    "suo",
+    "suojaalue",
+    "suojaalueenreunaviiva",
+    "suojametsa",
+    "suojametsanreunaviiva",
+    "suojanne",
+    "suojelualueenreunaviiva",
+    "suurjannitelinjanpylvas",
+    "syvyyskayra",
+    "syvyyskayransyvyysarvo",
+    "syvyyspiste",
+    "taajaanrakennettualue",
+    "taajaanrakennetunalueenreuna",
+    "taytemaa",
+    "tervahauta",
+    "tienroteksti",
+    "tiesymboli",
+    "tieviiva",
+    "tulentekopaikka",
+    "tulvaalue",
+    "tunnelinaukko",
+    "turvalaite",
+    "tuulivoimala",
+    "uittolaite",
+    "uittoranni",
+    "ulkojasisasaaristonraja",
+    "urheilujavirkistysalue",
+    "valtakunnanrajapyykki",
+    "varastoalue",
+    "vedenpinnankorkeusluku",
+    "vesiasteikko",
+    "vesikivi",
+    "vesikivikko",
+    "vesikulkuvayla",
+    "vesikulkuvaylankulkusuunta",
+    "vesikulkuvaylanteksti",
+    "vesikuoppa",
+    "vesitorni",
+    "viettoviiva",
+    "virtausnuoli",
+    "virtavesialue",
+    "virtavesikapea"
+  ],
+  "candidate_sheets": [
+    {
+      "map_sheet": "L3243D",
+      "split": "val",
+      "orthophoto_year": 2025,
+      "bounds": [
+        194000.0,
+        6744000.0,
+        200000.0,
+        6750000.0
+      ],
+      "class_support": {
+        "open_natural": {
+          "features": 606,
+          "union_area_km2": 4.403276170768449
+        },
+        "cultivated_land": {
+          "features": 130,
+          "union_area_km2": 5.307401047443755
+        },
+        "water": {
+          "features": 25,
+          "union_area_km2": 9.29736803545065
+        },
+        "built_structures": {
+          "features": 1185,
+          "union_area_km2": 0.08647728000004386
+        }
+      }
+    },
+    {
+      "map_sheet": "L3243F",
+      "split": "test",
+      "orthophoto_year": 2025,
+      "bounds": [
+        200000.0,
+        6744000.0,
+        206000.0,
+        6750000.0
+      ],
+      "class_support": {
+        "open_natural": {
+          "features": 1263,
+          "union_area_km2": 5.084796948123208
+        },
+        "cultivated_land": {
+          "features": 177,
+          "union_area_km2": 8.786022760537099
+        },
+        "water": {
+          "features": 32,
+          "union_area_km2": 1.2008504288586928
+        },
+        "built_structures": {
+          "features": 948,
+          "union_area_km2": 0.11768055447565648
+        }
+      }
+    },
+    {
+      "map_sheet": "L3243H",
+      "split": "test",
+      "orthophoto_year": 2025,
+      "bounds": [
+        206000.0,
+        6744000.0,
+        212000.0,
+        6750000.0
+      ],
+      "class_support": {
+        "open_natural": {
+          "features": 1517,
+          "union_area_km2": 7.257987041053206
+        },
+        "cultivated_land": {
+          "features": 162,
+          "union_area_km2": 6.077601857943783
+        },
+        "water": {
+          "features": 42,
+          "union_area_km2": 0.9213544200855419
+        },
+        "built_structures": {
+          "features": 820,
+          "union_area_km2": 0.11930674717675459
+        }
+      }
+    },
+    {
+      "map_sheet": "L3244C",
+      "split": "train",
+      "orthophoto_year": 2025,
+      "bounds": [
+        194000.0,
+        6750000.0,
+        200000.0,
+        6756000.0
+      ],
+      "class_support": {
+        "open_natural": {
+          "features": 719,
+          "union_area_km2": 3.2429057001792625
+        },
+        "cultivated_land": {
+          "features": 62,
+          "union_area_km2": 3.301545820425997
+        },
+        "water": {
+          "features": 52,
+          "union_area_km2": 5.815209756934476
+        },
+        "built_structures": {
+          "features": 4894,
+          "union_area_km2": 1.6094819517902041
+        }
+      }
+    },
+    {
+      "map_sheet": "L3244H",
+      "split": "train",
+      "orthophoto_year": 2025,
+      "bounds": [
+        206000.0,
+        6756000.0,
+        212000.0,
+        6762000.0
+      ],
+      "class_support": {
+        "open_natural": {
+          "features": 617,
+          "union_area_km2": 3.697300937821407
+        },
+        "cultivated_land": {
+          "features": 180,
+          "union_area_km2": 15.138406252456262
+        },
+        "water": {
+          "features": 26,
+          "union_area_km2": 0.3027982928012946
+        },
+        "built_structures": {
+          "features": 1753,
+          "union_area_km2": 0.45786856373614326
+        }
+      }
+    }
+  ]
+}

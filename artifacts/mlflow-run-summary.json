@@ -1,0 +1,614 @@
+{
+  "schema_version": "finland-geospatial-ai-mlflow-export/v1",
+  "generated_at": "2026-09-06T06:27:56.802684+00:00",
+  "tracking_uri_kind": "local-sqlite",
+  "experiment_name": "finland-geospatial-ai-nls",
+  "runs": [
+    {
+      "run_id": "9031810c9f4b458a93671bfc97172255",
+      "run_name": "E1-unet-rgb",
+      "status": "FINISHED",
+      "start_time": 1788285291607,
+      "end_time": 1788285700372,
+      "parameters": {
+        "architecture": "unet",
+        "class_map_version": "nls-broad-cover-v1",
+        "dataset_version": "nls-l324-2025-v1",
+        "device": "cuda",
+        "experiment_id": "E1-unet-rgb",
+        "native_pixel_size_m": "0.5",
+        "seed": "3067",
+        "split_version": "l324-spatial-blocks-v1",
+        "train_patches": "384",
+        "training_boundary_ignore": "True",
+        "val_patches": "96",
+        "validation_boundary_ignore": "True"
+      },
+      "metric_history": {
+        "train_loss": [
+          {
+            "step": 0,
+            "value": 0.9752037494132916,
+            "timestamp": 1788285349252
+          },
+          {
+            "step": 1,
+            "value": 0.879763268555204,
+            "timestamp": 1788285384185
+          },
+          {
+            "step": 2,
+            "value": 0.8383656330406666,
+            "timestamp": 1788285418735
+          },
+          {
+            "step": 3,
+            "value": 0.7935008437683185,
+            "timestamp": 1788285453220
+          },
+          {
+            "step": 4,
+            "value": 0.7736862376332283,
+            "timestamp": 1788285487804
+          },
+          {
+            "step": 5,
+            "value": 0.7508696463579932,
+            "timestamp": 1788285521993
+          },
+          {
+            "step": 6,
+            "value": 0.7269996274262667,
+            "timestamp": 1788285555947
+          },
+          {
+            "step": 7,
+            "value": 0.7129728679234782,
+            "timestamp": 1788285590028
+          },
+          {
+            "step": 8,
+            "value": 0.6977872438728809,
+            "timestamp": 1788285623978
+          },
+          {
+            "step": 9,
+            "value": 0.6933193992202481,
+            "timestamp": 1788285665613
+          },
+          {
+            "step": 10,
+            "value": 0.6592912133783102,
+            "timestamp": 1788285699809
+          }
+        ],
+        "val_mean_iou": [
+          {
+            "step": 0,
+            "value": 0.2363629553496624,
+            "timestamp": 1788285349252
+          },
+          {
+            "step": 1,
+            "value": 0.23229635865909998,
+            "timestamp": 1788285384185
+          },
+          {
+            "step": 2,
+            "value": 0.36868212835504277,
+            "timestamp": 1788285418735
+          },
+          {
+            "step": 3,
+            "value": 0.5670716887138365,
+            "timestamp": 1788285453220
+          },
+          {
+            "step": 4,
+            "value": 0.336933628262847,
+            "timestamp": 1788285487804
+          },
+          {
+            "step": 5,
+            "value": 0.5001493269386017,
+            "timestamp": 1788285521993
+          },
+          {
+            "step": 6,
+            "value": 0.5446568741180795,
+            "timestamp": 1788285555947
+          },
+          {
+            "step": 7,
+            "value": 0.5151969220187279,
+            "timestamp": 1788285590028
+          },
+          {
+            "step": 8,
+            "value": 0.5614932952031897,
+            "timestamp": 1788285623978
+          },
+          {
+            "step": 9,
+            "value": 0.5345416512859835,
+            "timestamp": 1788285665613
+          },
+          {
+            "step": 10,
+            "value": 0.5425036307276782,
+            "timestamp": 1788285699809
+          }
+        ]
+      },
+      "artifacts": [
+        "configuration",
+        "dataset",
+        "model"
+      ]
+    },
+    {
+      "run_id": "431b47f55c5e482687361e3a6c43e204",
+      "run_name": "E2-unet-no-boundary-ignore",
+      "status": "FINISHED",
+      "start_time": 1788285730784,
+      "end_time": 1788286709749,
+      "parameters": {
+        "architecture": "unet",
+        "class_map_version": "nls-broad-cover-v1",
+        "dataset_version": "nls-l324-2025-v1",
+        "device": "cuda",
+        "experiment_id": "E2-unet-no-boundary-ignore",
+        "native_pixel_size_m": "0.5",
+        "seed": "3067",
+        "split_version": "l324-spatial-blocks-v1",
+        "train_patches": "384",
+        "training_boundary_ignore": "False",
+        "val_patches": "96",
+        "validation_boundary_ignore": "True"
+      },
+      "metric_history": {
+        "train_loss": [
+          {
+            "step": 0,
+            "value": 0.9781948576370875,
+            "timestamp": 1788285783592
+          },
+          {
+            "step": 1,
+            "value": 0.8846355173736811,
+            "timestamp": 1788285817619
+          },
+          {
+            "step": 2,
+            "value": 0.839972265685598,
+            "timestamp": 1788285851755
+          },
+          {
+            "step": 3,
+            "value": 0.7978605261693398,
+            "timestamp": 1788285885803
+          },
+          {
+            "step": 4,
+            "value": 0.7846376113593578,
+            "timestamp": 1788285920079
+          },
+          {
+            "step": 5,
+            "value": 0.760872627918919,
+            "timestamp": 1788285954302
+          },
+          {
+            "step": 6,
+            "value": 0.729945708376666,
+            "timestamp": 1788285988099
+          },
+          {
+            "step": 7,
+            "value": 0.7212784014021357,
+            "timestamp": 1788286022343
+          },
+          {
+            "step": 8,
+            "value": 0.7041763470818599,
+            "timestamp": 1788286056418
+          },
+          {
+            "step": 9,
+            "value": 0.7066945418094596,
+            "timestamp": 1788286090651
+          },
+          {
+            "step": 10,
+            "value": 0.6696163897092143,
+            "timestamp": 1788286125910
+          },
+          {
+            "step": 11,
+            "value": 0.6893951262657841,
+            "timestamp": 1788286175238
+          },
+          {
+            "step": 12,
+            "value": 0.6681443912287554,
+            "timestamp": 1788286225240
+          },
+          {
+            "step": 13,
+            "value": 0.6778906900435686,
+            "timestamp": 1788286259441
+          },
+          {
+            "step": 14,
+            "value": 0.6616697146867713,
+            "timestamp": 1788286292944
+          },
+          {
+            "step": 15,
+            "value": 0.6628771787509322,
+            "timestamp": 1788286325985
+          },
+          {
+            "step": 16,
+            "value": 0.6457888757189115,
+            "timestamp": 1788286361027
+          },
+          {
+            "step": 17,
+            "value": 0.6259344570959607,
+            "timestamp": 1788286398566
+          },
+          {
+            "step": 18,
+            "value": 0.6414169541870555,
+            "timestamp": 1788286448354
+          },
+          {
+            "step": 19,
+            "value": 0.6389611633494496,
+            "timestamp": 1788286491674
+          },
+          {
+            "step": 20,
+            "value": 0.6364448321983218,
+            "timestamp": 1788286543970
+          },
+          {
+            "step": 21,
+            "value": 0.6006811258072654,
+            "timestamp": 1788286605914
+          },
+          {
+            "step": 22,
+            "value": 0.6536977443223199,
+            "timestamp": 1788286640482
+          },
+          {
+            "step": 23,
+            "value": 0.5982499172290167,
+            "timestamp": 1788286675056
+          },
+          {
+            "step": 24,
+            "value": 0.5988825742776195,
+            "timestamp": 1788286709636
+          }
+        ],
+        "val_mean_iou": [
+          {
+            "step": 0,
+            "value": 0.20259488966798242,
+            "timestamp": 1788285783592
+          },
+          {
+            "step": 1,
+            "value": 0.26032267032086637,
+            "timestamp": 1788285817619
+          },
+          {
+            "step": 2,
+            "value": 0.5321736006287784,
+            "timestamp": 1788285851755
+          },
+          {
+            "step": 3,
+            "value": 0.5373717544586731,
+            "timestamp": 1788285885803
+          },
+          {
+            "step": 4,
+            "value": 0.4982509494313165,
+            "timestamp": 1788285920079
+          },
+          {
+            "step": 5,
+            "value": 0.5152896687214011,
+            "timestamp": 1788285954302
+          },
+          {
+            "step": 6,
+            "value": 0.5554009786390556,
+            "timestamp": 1788285988099
+          },
+          {
+            "step": 7,
+            "value": 0.5837667221117245,
+            "timestamp": 1788286022343
+          },
+          {
+            "step": 8,
+            "value": 0.5765565728360889,
+            "timestamp": 1788286056418
+          },
+          {
+            "step": 9,
+            "value": 0.5310403149857288,
+            "timestamp": 1788286090651
+          },
+          {
+            "step": 10,
+            "value": 0.5325318866253353,
+            "timestamp": 1788286125910
+          },
+          {
+            "step": 11,
+            "value": 0.5860198135172361,
+            "timestamp": 1788286175238
+          },
+          {
+            "step": 12,
+            "value": 0.5891376031462894,
+            "timestamp": 1788286225240
+          },
+          {
+            "step": 13,
+            "value": 0.6520684660578449,
+            "timestamp": 1788286259441
+          },
+          {
+            "step": 14,
+            "value": 0.5524238258012629,
+            "timestamp": 1788286292944
+          },
+          {
+            "step": 15,
+            "value": 0.5808184544991284,
+            "timestamp": 1788286325985
+          },
+          {
+            "step": 16,
+            "value": 0.5928497019563489,
+            "timestamp": 1788286361027
+          },
+          {
+            "step": 17,
+            "value": 0.6678362598463068,
+            "timestamp": 1788286398566
+          },
+          {
+            "step": 18,
+            "value": 0.5677831044900659,
+            "timestamp": 1788286448354
+          },
+          {
+            "step": 19,
+            "value": 0.5412997798912498,
+            "timestamp": 1788286491674
+          },
+          {
+            "step": 20,
+            "value": 0.6132406449320371,
+            "timestamp": 1788286543970
+          },
+          {
+            "step": 21,
+            "value": 0.536871596613658,
+            "timestamp": 1788286605914
+          },
+          {
+            "step": 22,
+            "value": 0.6065413948526983,
+            "timestamp": 1788286640482
+          },
+          {
+            "step": 23,
+            "value": 0.6644205330894922,
+            "timestamp": 1788286675056
+          },
+          {
+            "step": 24,
+            "value": 0.6332420418642466,
+            "timestamp": 1788286709636
+          }
+        ]
+      },
+      "artifacts": [
+        "configuration",
+        "dataset",
+        "model"
+      ]
+    },
+    {
+      "run_id": "1da67b56fa65438ca5020b17be02f78b",
+      "run_name": "E3-segformer-b0-rgb",
+      "status": "FINISHED",
+      "start_time": 1788286752390,
+      "end_time": 1788287167246,
+      "parameters": {
+        "architecture": "segformer_b0",
+        "class_map_version": "nls-broad-cover-v1",
+        "dataset_version": "nls-l324-2025-v1",
+        "device": "cuda",
+        "experiment_id": "E3-segformer-b0-rgb",
+        "native_pixel_size_m": "0.5",
+        "seed": "3067",
+        "split_version": "l324-spatial-blocks-v1",
+        "train_patches": "384",
+        "training_boundary_ignore": "True",
+        "val_patches": "96",
+        "validation_boundary_ignore": "True"
+      },
+      "metric_history": {
+        "train_loss": [
+          {
+            "step": 0,
+            "value": 0.8704619635827839,
+            "timestamp": 1788286801770
+          },
+          {
+            "step": 1,
+            "value": 0.7084004211549958,
+            "timestamp": 1788286829420
+          },
+          {
+            "step": 2,
+            "value": 0.629530759062618,
+            "timestamp": 1788286857104
+          },
+          {
+            "step": 3,
+            "value": 0.6274756599062433,
+            "timestamp": 1788286887252
+          },
+          {
+            "step": 4,
+            "value": 0.5515724224969745,
+            "timestamp": 1788286928176
+          },
+          {
+            "step": 5,
+            "value": 0.5278637110410879,
+            "timestamp": 1788286947904
+          },
+          {
+            "step": 6,
+            "value": 0.5204161244134108,
+            "timestamp": 1788286973847
+          },
+          {
+            "step": 7,
+            "value": 0.5263275136239827,
+            "timestamp": 1788287004725
+          },
+          {
+            "step": 8,
+            "value": 0.48295941304725903,
+            "timestamp": 1788287025037
+          },
+          {
+            "step": 9,
+            "value": 0.47420407600778464,
+            "timestamp": 1788287043611
+          },
+          {
+            "step": 10,
+            "value": 0.47007517722280073,
+            "timestamp": 1788287067860
+          },
+          {
+            "step": 11,
+            "value": 0.4416516527805167,
+            "timestamp": 1788287092312
+          },
+          {
+            "step": 12,
+            "value": 0.4555668486476255,
+            "timestamp": 1788287116932
+          },
+          {
+            "step": 13,
+            "value": 0.41719609413606423,
+            "timestamp": 1788287141489
+          },
+          {
+            "step": 14,
+            "value": 0.41118759780268493,
+            "timestamp": 1788287165821
+          }
+        ],
+        "val_mean_iou": [
+          {
+            "step": 0,
+            "value": 0.3743497355521653,
+            "timestamp": 1788286801770
+          },
+          {
+            "step": 1,
+            "value": 0.6015792022695522,
+            "timestamp": 1788286829420
+          },
+          {
+            "step": 2,
+            "value": 0.5624583302557442,
+            "timestamp": 1788286857104
+          },
+          {
+            "step": 3,
+            "value": 0.5662376471102413,
+            "timestamp": 1788286887252
+          },
+          {
+            "step": 4,
+            "value": 0.6031282126121931,
+            "timestamp": 1788286928176
+          },
+          {
+            "step": 5,
+            "value": 0.6557825649747293,
+            "timestamp": 1788286947904
+          },
+          {
+            "step": 6,
+            "value": 0.7052575026904331,
+            "timestamp": 1788286973847
+          },
+          {
+            "step": 7,
+            "value": 0.6585076520791255,
+            "timestamp": 1788287004725
+          },
+          {
+            "step": 8,
+            "value": 0.7343602223164037,
+            "timestamp": 1788287025037
+          },
+          {
+            "step": 9,
+            "value": 0.6801975982559927,
+            "timestamp": 1788287043611
+          },
+          {
+            "step": 10,
+            "value": 0.695588891524874,
+            "timestamp": 1788287067860
+          },
+          {
+            "step": 11,
+            "value": 0.6469567917609379,
+            "timestamp": 1788287092312
+          },
+          {
+            "step": 12,
+            "value": 0.7235111202669715,
+            "timestamp": 1788287116932
+          },
+          {
+            "step": 13,
+            "value": 0.6852331643754808,
+            "timestamp": 1788287141489
+          },
+          {
+            "step": 14,
+            "value": 0.6979056725826664,
+            "timestamp": 1788287165821
+          }
+        ]
+      },
+      "artifacts": [
+        "configuration",
+        "dataset",
+        "model"
+      ]
+    }
+  ]
+}

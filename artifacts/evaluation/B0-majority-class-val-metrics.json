@@ -1,0 +1,79 @@
+{
+  "schema_version": "finland-geospatial-ai-evaluation/v2",
+  "experiment_id": "B0-majority-class",
+  "majority_class_id": 0,
+  "dataset_version": "nls-l324-2025-v1",
+  "split": "val",
+  "sealed_test": false,
+  "global": {
+    "pixel_accuracy": 0.39086639865284334,
+    "mean_iou": 0.07817327973056867,
+    "macro_dice": 0.1124094734135288,
+    "mean_class_recall": 0.2,
+    "per_class_iou": [
+      0.39086639865284334,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_class_dice": [
+      0.562047367067644,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_class_precision": [
+      0.39086639865284334,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_class_recall": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "confusion_matrix": [
+      [
+        2382412,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        1962661,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        915636,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        14909,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        819590,
+        0,
+        0,
+        0,
+        0
+      ]
+    ]
+  }
+}
