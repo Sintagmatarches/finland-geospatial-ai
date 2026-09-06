@@ -62,7 +62,7 @@ def generate_dataset_report(manifest_path: Path, output_dir: Path) -> Path:
     json_path = output_dir / "dataset-validation.json"
     json_path.write_text(json.dumps(report, indent=2), encoding="utf-8")
     markdown = [
-        "# Generated dataset validation",
+        "# NLS v2 dataset validation",
         "",
         f"Dataset: `{manifest.dataset_version}`",
         "",

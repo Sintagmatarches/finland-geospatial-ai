@@ -1,4 +1,4 @@
-# Generated final model card
+# Selected model summary
 
 - Model: `E3-segformer-b0-rgb`
 - Dataset: `nls-l324-2025-v1`

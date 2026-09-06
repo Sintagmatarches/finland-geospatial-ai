@@ -5,8 +5,9 @@
 [![License: MIT](https://img.shields.io/badge/code-MIT-green.svg)](LICENSE)
 
 Native-resolution semantic segmentation of Finnish aerial imagery using official data from the
-National Land Survey of Finland (NLS). The project treats geospatial provenance, label uncertainty,
-spatial leakage, held-out geography, calibration, and deployable inference as first-class concerns.
+National Land Survey of Finland (NLS). The pipeline records source provenance, keeps
+train/validation/test geography separate, measures boundary-label uncertainty and calibration, and
+serves georeferenced predictions.
 
 The imagery stays at its native **0.5 metre ground sampling distance** in **ETRS-TM35FIN
 (EPSG:3067)**. No Sentinel-2 proxy, visual demo tiles, resampled screenshots, or synthetic labels
@@ -17,8 +18,8 @@ are used as evidence.
 The selected pretrained SegFormer-B0 reached **0.7344 validation mIoU** and **0.6652 mIoU / 0.7742
 macro Dice** on the single sealed-test evaluation. The two held-out test sheets scored 0.6447 and
 0.6784 mIoU. Water was strongest at 0.9636 IoU; open-natural land was weakest at 0.3300 IoU.
-The full test artifact, per-patch metrics, selection record, calibration bins, and visual cases are
-committed rather than reduced to a headline score.
+The repository includes the full test artifact, per-patch metrics, selection record, calibration
+bins, and visual cases.
 
 ## Research question
 
@@ -26,7 +27,7 @@ How reliably can open NLS Topographic Database polygons supervise five visually 
 on 0.5 m RGB orthophotos, and how much does a pretrained SegFormer-B0 improve held-out geography
 over a compact U-Net?
 
-The class vocabulary is intentionally honest about the source data:
+The five classes follow what can be derived from the source data:
 
 | ID | Class | Label source |
 |---:|---|---|
@@ -143,7 +144,7 @@ Finland**, the dataset names, and delivery dates. Code in this repository is MIT
 - [NLS v2 dataset card](reports/v2/dataset-card.md)
 - [NLS v2 architecture](reports/v2/architecture.md)
 - [NLS v2 model card](reports/v2/model-card.md)
-- [Generated experiment report](reports/v2/generated/experiment-report.md)
+- [Experiment report](reports/v2/generated/experiment-report.md)
 - [Visual error analysis](reports/v2/generated/error-analysis.md)
 - [Calibration and uncertainty analysis](reports/v2/calibration.md)
 

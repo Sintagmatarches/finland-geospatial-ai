@@ -1,6 +1,6 @@
-# Generated visual error analysis
+# Visual error analysis
 
-The table identifies measured cases used by the generated orthophoto/reference/prediction/error/uncertainty panels.
+The table lists the measured cases used in the orthophoto/reference/prediction/error/uncertainty panels.
 
 | Patch | Map sheet | mIoU | Boundary F1 | Entropy | Confidence |
 |---|---|---:|---:|---:|---:|

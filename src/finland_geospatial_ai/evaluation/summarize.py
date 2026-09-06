@@ -41,7 +41,7 @@ def generate_reports(
         for item in manifest.classes
     ]
     experiment = [
-        "# Generated experiment report",
+        "# NLS v2 experiment report",
         "",
         f"Selected experiment: `{selection['selected_experiment_id']}`.",
         "Selection used validation evidence only; sealed-test metrics were not consulted.",
@@ -102,7 +102,7 @@ def generate_reports(
     experiment.extend(
         [
             "",
-            "## Interpretation boundaries",
+            "## Scope",
             "",
             "The evidence applies to the declared L324 blocks, 2025 RGB orthophotos, the recorded "
             "Topographic Database snapshot, and the five-class mapping. It does not establish "
@@ -114,9 +114,9 @@ def generate_reports(
 
     ordered = sorted(patch_rows, key=lambda row: float(row["mean_iou"]))
     error_lines = [
-        "# Generated visual error analysis",
+        "# Visual error analysis",
         "",
-        "The table identifies measured cases used by the generated orthophoto/reference/"
+        "The table lists the measured cases used in the orthophoto/reference/"
         "prediction/error/uncertainty panels.",
         "",
         "| Patch | Map sheet | mIoU | Boundary F1 | Entropy | Confidence |",
@@ -146,7 +146,7 @@ def generate_reports(
     error_path.write_text("\n".join(error_lines) + "\n", encoding="utf-8")
 
     model_card = [
-        "# Generated final model card",
+        "# Selected model summary",
         "",
         f"- Model: `{selection['selected_experiment_id']}`",
         f"- Dataset: `{manifest.dataset_version}`",

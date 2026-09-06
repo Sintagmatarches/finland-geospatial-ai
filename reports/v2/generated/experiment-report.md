@@ -1,4 +1,4 @@
-# Generated experiment report
+# NLS v2 experiment report
 
 Selected experiment: `E3-segformer-b0-rgb`.
 Selection used validation evidence only; sealed-test metrics were not consulted.
@@ -38,6 +38,6 @@ Selection used validation evidence only; sealed-test metrics were not consulted.
 | L3243F | 0.6447 | 0.8253 | 0.4558 |
 | L3243H | 0.6784 | 0.8641 | 0.3980 |
 
-## Interpretation boundaries
+## Scope
 
 The evidence applies to the declared L324 blocks, 2025 RGB orthophotos, the recorded Topographic Database snapshot, and the five-class mapping. It does not establish Finland-wide performance. `other_land` is a heterogeneous residual class, not forest.

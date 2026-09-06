@@ -37,7 +37,7 @@ The complete feature counts, areas, layer inventory, and source SHA-256 are stor
 
 The 2025 imagery and the current Topographic Database snapshot are close but not simultaneous.
 Acquisition year and vector snapshot date are recorded separately. Transition pixels receive a
-1.5 m uncertainty mask, and obvious source omissions remain documented rather than silently relabelled.
+1.5 m uncertainty mask. Source omissions are recorded instead of being assigned guessed labels.
 
 ## Official references
 

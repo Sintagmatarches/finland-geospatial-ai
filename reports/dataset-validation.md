@@ -1,4 +1,4 @@
-# Generated dataset validation
+# NLS v2 dataset validation
 
 Dataset: `nls-l324-2025-v1`
 
