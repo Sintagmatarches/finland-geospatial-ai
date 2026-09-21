@@ -20,7 +20,7 @@ from scipy.stats import spearmanr
 from finland_geospatial_ai.datasets.dataset import NLSPatchDataset, create_dataloader
 from finland_geospatial_ai.datasets.manifest import DatasetManifest
 from finland_geospatial_ai.evaluation.metrics import SegmentationMetrics, boundary_f1
-from finland_geospatial_ai.models import create_model
+from finland_geospatial_ai.models import create_model, load_compatible_state_dict
 
 
 def _entropy(probabilities: torch.Tensor) -> torch.Tensor:
@@ -58,7 +58,7 @@ def evaluate(
         raise ValueError("CUDA evaluation requested but CUDA is unavailable")
     device = torch.device(device_name)
     model = create_model(metadata["model"])
-    model.load_state_dict(load_file(weights), strict=True)
+    load_compatible_state_dict(model, load_file(weights))
     model.to(device).eval()
     dataset = NLSPatchDataset(manifest_path, split, use_boundary_ignore=False)
     loader = create_dataloader(dataset, batch_size=1, training=False, num_workers=0, seed=3067)

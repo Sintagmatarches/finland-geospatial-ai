@@ -60,8 +60,10 @@ def test_inference_rejects_all_nodata(tmp_path: Path, tiny_model: Path) -> None:
         from_origin(400000, 6700000, 0.5, 0.5),
         nodata=0,
     )
+    output_path = tmp_path / "output.tif"
     with pytest.raises(ValueError, match="no valid pixels"):
-        Predictor(tiny_model, device="cpu").predict(input_path, tmp_path / "output.tif")
+        Predictor(tiny_model, device="cpu").predict(input_path, output_path)
+    assert not output_path.exists()
 
 
 def test_model_metadata_mismatch_is_rejected(tmp_path: Path, tiny_model: Path) -> None:

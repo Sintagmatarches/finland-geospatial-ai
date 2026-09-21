@@ -137,7 +137,9 @@ def train(config_path: Path) -> dict[str, Any]:
     history: list[dict[str, float]] = []
     dataset_digest = hashlib.sha256(manifest_path.read_bytes()).hexdigest()
 
-    mlflow.set_tracking_uri(Path("mlruns").resolve().as_uri())
+    # MLflow 3.16 retires new filesystem-backed tracking stores. This changes
+    # experiment bookkeeping only; the frozen v1 artifacts remain untouched.
+    mlflow.set_tracking_uri("sqlite:///mlflow.db")
     mlflow.set_experiment(config["mlflow_experiment"])
     with mlflow.start_run(run_name=f"{config['experiment_id']}-{config['model']}") as run:
         mlflow.log_params(

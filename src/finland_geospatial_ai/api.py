@@ -17,20 +17,23 @@ from fastapi import FastAPI, File, HTTPException, UploadFile
 from fastapi.responses import FileResponse
 from starlette.background import BackgroundTask
 
+from finland_geospatial_ai.geospatial.raster import inspect_raster
 from finland_geospatial_ai.inference import Predictor
 
-app = FastAPI(title="Finland Geospatial AI", version="0.2.0")
+app = FastAPI(title="Finland Geospatial AI", version="0.2.1")
 _predictor: Predictor | None = None
 _inference_lock = threading.Lock()
+_model_lock = threading.Lock()
 
 
 def get_predictor() -> Predictor:
     global _predictor
-    if _predictor is None:
-        model_path = os.environ.get("GEOAI_MODEL_METADATA")
-        if not model_path:
-            raise RuntimeError("GEOAI_MODEL_METADATA is not configured")
-        _predictor = Predictor(model_path)
+    with _model_lock:
+        if _predictor is None:
+            model_path = os.environ.get("GEOAI_MODEL_METADATA")
+            if not model_path:
+                raise RuntimeError("GEOAI_MODEL_METADATA is not configured")
+            _predictor = Predictor(model_path)
     return _predictor
 
 
@@ -38,9 +41,14 @@ def get_predictor() -> Predictor:
 def health() -> dict[str, str]:
     try:
         predictor = get_predictor()
-    except (RuntimeError, FileNotFoundError, ValueError) as exc:
-        raise HTTPException(status_code=503, detail=str(exc)) from exc
+    except Exception as exc:
+        raise HTTPException(status_code=503, detail="Model unavailable") from exc
     return {"status": "ready", "experiment_id": predictor.metadata["experiment_id"]}
+
+
+@app.get("/live")
+async def live() -> dict[str, str]:
+    return {"status": "alive"}
 
 
 @app.get("/model")
@@ -59,6 +67,15 @@ def predict(file: Annotated[UploadFile, File(...)]) -> FileResponse:
     suffix = Path(file.filename or "input.tif").suffix.lower()
     if suffix not in {".tif", ".tiff", ".jp2"}:
         raise HTTPException(status_code=415, detail="Upload a GeoTIFF or JPEG2000 orthophoto")
+    if not _inference_lock.acquire(blocking=False):
+        raise HTTPException(status_code=503, detail="Inference busy", headers={"Retry-After": "1"})
+    try:
+        return _predict_locked(file, suffix)
+    finally:
+        _inference_lock.release()
+
+
+def _predict_locked(file: UploadFile, suffix: str) -> FileResponse:
     directory = Path(tempfile.mkdtemp(prefix="geoai-request-"))
     input_path = directory / f"input{suffix}"
     output_path = directory / "prediction.tif"
@@ -75,9 +92,15 @@ def predict(file: Annotated[UploadFile, File(...)]) -> FileResponse:
                         status_code=413, detail="Uploaded raster exceeds size limit"
                     )
                 stream.write(chunk)
-        predictor = get_predictor()
-        with _inference_lock:
-            predictor.predict(input_path, output_path, confidence_path=confidence_path)
+        raster = inspect_raster(input_path, expected_bands=3, expected_dtype="uint8")
+        maximum_pixels = int(os.environ.get("GEOAI_MAX_PIXELS", "4194304"))
+        if raster.width * raster.height > maximum_pixels or raster.width > 16384:
+            raise HTTPException(status_code=413, detail="Decoded raster exceeds pixel limit")
+        try:
+            predictor = get_predictor()
+        except Exception as exc:
+            raise HTTPException(status_code=503, detail="Model unavailable") from exc
+        predictor.predict(input_path, output_path, confidence_path=confidence_path)
         with (
             rasterio.open(output_path) as mask_source,
             rasterio.open(confidence_path) as confidence_source,
@@ -117,9 +140,12 @@ def predict(file: Annotated[UploadFile, File(...)]) -> FileResponse:
     except HTTPException:
         shutil.rmtree(directory, ignore_errors=True)
         raise
-    except (ValueError, FileNotFoundError) as exc:
+    except (ValueError, rasterio.errors.RasterioError) as exc:
         shutil.rmtree(directory, ignore_errors=True)
-        raise HTTPException(status_code=422, detail=str(exc)) from exc
+        raise HTTPException(status_code=422, detail="Raster violates inference contract") from exc
+    except Exception as exc:
+        shutil.rmtree(directory, ignore_errors=True)
+        raise HTTPException(status_code=500, detail="Inference failed") from exc
     return FileResponse(
         package_path,
         media_type="application/zip",

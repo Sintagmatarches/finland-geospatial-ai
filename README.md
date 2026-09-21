@@ -103,7 +103,10 @@ mlflow ui --backend-store-uri sqlite:///mlflow.db
 
 Inference rejects rasters that violate the trained geospatial contract: exactly three RGB bands,
 0.5 m square pixels, and an EPSG:3067 horizontal CRS. Large rasters use overlap-tiled probability
-blending, and the output GeoTIFF preserves CRS, transform, dimensions, and model provenance tags.
+blending with row-streamed output, so the process never allocates a full-scene class-probability
+cube. The API bounds decoded pixels and dimensions, admits one inference per process, loads the
+hash-verified checkpoint offline and returns sanitized 4xx/5xx failures. The output GeoTIFF preserves
+CRS, transform, dimensions, and model provenance tags.
 
 ```bash
 geoai-infer input.jp2 prediction.tif \
@@ -120,6 +123,8 @@ curl -F 'file=@input.jp2' http://localhost:8000/predict --output prediction-pack
 
 The API package contains `prediction.tif`, `confidence.tif`, and `summary.json` with the class
 legend, pixel fractions, square-metre areas, dimensions, model version, and confidence summary.
+See the [inference operations contract](reports/inference-operations.md) for capacity limits,
+failure behavior, rollback and drift-monitoring boundaries.
 
 ## Repository map
 
@@ -150,8 +155,9 @@ Finland**, the dataset names, and delivery dates. Code in this repository is MIT
 
 ## Immutable v1 track
 
-The original Sentinel-2 / ESA WorldCover experiment remains intact under `src/finland_geoai`, its
-original configs, reports, figures, checkpoints, manifest, metrics, and test lock. Its held-out Oulu
+The original Sentinel-2 / ESA WorldCover experiment retains its scientific configuration, reports,
+figures, checkpoints, manifest, metrics and test lock. Its MLflow bookkeeping now uses the same
+SQLite backend required by the maintained MLflow release. Its held-out Oulu
 result was 0.3982 mIoU with a six-class, 10 m, four-band contract. It is historical evidence and was
 not retrained or tuned during the NLS migration. The v1 and v2 values are not a direct leaderboard:
 their sensors, spatial resolution, labels, classes, regions, patch sizes, and model-selection pools

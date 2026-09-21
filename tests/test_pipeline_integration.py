@@ -126,7 +126,8 @@ def test_training_baseline_and_sealed_evaluation(tmp_path: Path, tiny_manifest: 
     config_path = tmp_path / "experiment.yaml"
     config_path.write_text(yaml.safe_dump(config), encoding="utf-8")
     model_dir = tmp_path / "models"
-    metadata = train(config_path, tiny_manifest, model_dir, (tmp_path / "mlruns").as_uri())
+    tracking_uri = f"sqlite:///{(tmp_path / 'mlflow.db').as_posix()}"
+    metadata = train(config_path, tiny_manifest, model_dir, tracking_uri)
     selection = select_model([metadata], tmp_path / "model-selection.json")
     evaluation_dir = tmp_path / "evaluation"
     metrics = evaluate(metadata, tiny_manifest, evaluation_dir)
