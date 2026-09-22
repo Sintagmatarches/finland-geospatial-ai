@@ -46,3 +46,8 @@ vulnerabilities in the resolved environment; local project and PyTorch CPU wheel
 identities are listed as unauditable because they are not PyPI distributions. CI
 also emits a CycloneDX SBOM. This is release compatibility evidence, not a rerun of
 the sealed geographic evaluation.
+
+The container smoke fixture explicitly changes its synthetic artifacts to mode
+`0644`: `safetensors` creates new files as `0600` on Linux, which made a bind-mounted
+fixture unreadable by UID 10001 even though host-side tests passed. CI now loads the
+fixture once as the image's non-root user before it starts the API smoke test.

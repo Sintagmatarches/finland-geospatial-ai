@@ -41,12 +41,14 @@ def main() -> None:
         "native_pixel_size_m": 0.5,
         "weights": weights.name,
     }
-    (args.output_dir / "selected-model.json").write_text(
+    metadata_path = args.output_dir / "selected-model.json"
+    metadata_path.write_text(
         json.dumps(metadata, indent=2), encoding="utf-8"
     )
     image = np.full((3, 32, 32), 127, dtype=np.uint8)
+    input_path = args.output_dir / "input.tif"
     with rasterio.open(
-        args.output_dir / "input.tif",
+        input_path,
         "w",
         driver="GTiff",
         width=32,
@@ -57,6 +59,11 @@ def main() -> None:
         transform=from_origin(400000, 6700000, 0.5, 0.5),
     ) as destination:
         destination.write(image)
+    # CI bind-mounts these fixtures into the non-root runtime container. Some
+    # artifact writers preserve restrictive creation modes on Linux, so make
+    # the intended public synthetic fixtures explicitly readable.
+    for artifact in (weights, metadata_path, input_path):
+        artifact.chmod(0o644)
 
 
 if __name__ == "__main__":

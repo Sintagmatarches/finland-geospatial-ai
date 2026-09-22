@@ -36,6 +36,12 @@ jobs:
       - run: pytest --cov=finland_geospatial_ai --cov-report=term-missing --cov-fail-under=75
       - run: docker build -f docker/Dockerfile -t finland-geospatial-ai:${{ github.sha }} .
       - run: python scripts/create_smoke_assets.py
+      - name: Validate model artifact access as the runtime user
+        run: |
+          docker run --rm --entrypoint python \
+            --volume "$PWD/artifacts/smoke:/models:ro" \
+            finland-geospatial-ai:${{ github.sha }} \
+            -c "from finland_geospatial_ai.inference import Predictor; Predictor('/models/selected-model.json', device='cpu')"
       - name: Validate Docker model load, health and inference
         run: |
           docker run --detach --name geoai-smoke \
